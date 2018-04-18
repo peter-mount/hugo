@@ -58,7 +58,8 @@ def buildHugo = {
   architecture -> node( slaveId( architecture ) ) {
     stage( "Checkout " + architecture ) {
       checkout scm
-      sh 'docker pull debian:9'
+      sh 'docker pull golang:alpine'
+      sh 'docker pull alpine'
     }
 
     stage( 'Build' ) {
@@ -96,14 +97,16 @@ def multiarch = {
   }
 }
 
-parallel(
-  'amd64': {
-    buildHugo( 'amd64' )
-  },
-  'arm64v8': {
-    buildHugo( 'arm64v8' )
-  }
-)
+stage( 'Build' ) {
+  parallel(
+    'amd64': {
+      buildHugo( 'amd64' )
+    },
+    'arm64v8': {
+      buildHugo( 'arm64v8' )
+    }
+  )
+}
 
 node( "AMD64" ) {
   multiarch( version )
