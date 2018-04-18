@@ -64,6 +64,7 @@ def buildHugo = {
 
     stage( 'Build' ) {
       sh 'docker build' +
+        ' --build-arg arch=' + goarch( architecture ) +
         ' -t ' + dockerImage( architecture, version ) +
         ' .'
     }
