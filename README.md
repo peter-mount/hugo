@@ -1,3 +1,5 @@
+This project is deprecated
+
 # Hugo in a Docker container
 [![Build Status](http://jenkins.area51.onl/job/peter-mount/job/hugo/job/master/badge/icon)](http://jenkins.area51.onl/job/peter-mount/job/hugo/job/master/)
 
